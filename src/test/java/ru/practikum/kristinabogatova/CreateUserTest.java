@@ -20,6 +20,7 @@ public class CreateUserTest {
         String name = Utils.generateRandomName();
 
         Response response = userClient.createUser(email, password, name);
+
         assertEquals(200, response.getStatusCode());
     }
 
@@ -32,9 +33,9 @@ public class CreateUserTest {
         String name = Utils.generateRandomName();
 
         Response first = userClient.createUser(email, password, name);
-        assertEquals(200, first.getStatusCode());
-
         Response second = userClient.createUser(email, password, name);
+
+        assertEquals(200, first.getStatusCode());
         assertEquals(403, second.getStatusCode());
     }
 
@@ -46,6 +47,7 @@ public class CreateUserTest {
         String name = Utils.generateRandomName();
 
         Response response = userClient.createUser("", password, name);
+
         assertEquals(403, response.getStatusCode());
     }
 }

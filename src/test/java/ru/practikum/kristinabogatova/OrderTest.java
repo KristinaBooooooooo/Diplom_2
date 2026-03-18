@@ -46,7 +46,9 @@ public class OrderTest {
     @Description("Проверяю, что авторизованный пользователь может создать заказ")
     public void createOrderWithAuthAndIngredients() {
         String[] ingredients = Utils.getValidIngredientHashes();
+
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
+
         assertEquals(200, response.getStatusCode());
         assertNotNull(response.jsonPath().get("order.number"));
     }
@@ -56,7 +58,9 @@ public class OrderTest {
     @Description("Проверяю, что неавторизованный пользователь может создать заказ")
     public void createOrderWithoutAuthAndIngredients() {
         String[] ingredients = Utils.getValidIngredientHashes();
+
         Response response = orderClient.createOrderWithoutAuth(ingredients);
+
         assertEquals(200, response.getStatusCode());
     }
 
@@ -65,7 +69,9 @@ public class OrderTest {
     @Description("Проверяю, что API возвращает ошибку при пустом списке ингредиентов")
     public void createOrderWithAuthNoIngredients() {
         String[] ingredients = {};
+
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
+
         assertEquals(400, response.getStatusCode());
     }
 
@@ -74,7 +80,9 @@ public class OrderTest {
     @Description("Проверяю, что API возвращает ошибку при неверном хеше (ожидается 400 или 500)")
     public void createOrderWithInvalidHash() {
         String[] ingredients = {Utils.invalidIngredientsHash()};
+
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
+
         int code = response.getStatusCode();
         assertTrue("Статус код должен быть ошибкой (>=400), но был " + code, code >= 400);
     }
@@ -84,7 +92,9 @@ public class OrderTest {
     @Description("Проверяю, что API возвращает ошибку при пустом списке ингредиентов и без авторизации")
     public void createOrderWithoutAuthNoIngredients() {
         String[] ingredients = {};
+
         Response response = orderClient.createOrderWithoutAuth(ingredients);
+
         assertEquals(400, response.getStatusCode());
     }
 }

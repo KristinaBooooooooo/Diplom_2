@@ -36,10 +36,10 @@ public class LoginUserTest {
         String name = Utils.generateRandomName();
 
         Response create = userClient.createUser(email, password, name);
+        Response login = userClient.loginUser(email, password);
+
         assertEquals("Пользователь не был создан", 200, create.getStatusCode());
         accessToken = create.jsonPath().getString("accessToken");
-
-        Response login = userClient.loginUser(email, password);
         assertEquals("Логин существующего пользователя не прошёл", 200, login.getStatusCode());
     }
 
@@ -48,7 +48,9 @@ public class LoginUserTest {
     @Description("Проверяю, что API возвращает 401 при неверном email")
     public void loginWithWrongEmail() {
         String fakeEmail = "fake_" + Utils.generateRandomEmail();
+
         Response response = userClient.loginUser(fakeEmail, "anyPassword123");
+
         assertEquals("Неверный email не возвращает 401", 401, response.getStatusCode());
         // Пользователь не создавался, токен не сохраняем
     }
@@ -62,10 +64,10 @@ public class LoginUserTest {
         String name = Utils.generateRandomName();
 
         Response create = userClient.createUser(email, password, name);
+        Response response = userClient.loginUser(email, "wrongpassword123");
+
         assertEquals("Пользователь не был создан", 200, create.getStatusCode());
         accessToken = create.jsonPath().getString("accessToken");
-
-        Response response = userClient.loginUser(email, "wrongpassword123");
         assertEquals("Неверный пароль не возвращает 401", 401, response.getStatusCode());
     }
 }
