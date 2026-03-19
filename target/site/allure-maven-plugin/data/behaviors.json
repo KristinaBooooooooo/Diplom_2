@@ -1,0 +1,148 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "Логин с неверным паролем",
+    "uid" : "1893f846b6aad935",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680624039,
+      "stop" : 1773680629721,
+      "duration" : 5682
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Логин с неверным email",
+    "uid" : "ef05aeda3d4c50cd",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680629930,
+      "stop" : 1773680630428,
+      "duration" : 498
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Логин существующего пользователя",
+    "uid" : "825fa56115f9f50",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680630432,
+      "stop" : 1773680632560,
+      "duration" : 2128
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание нового уникального пользователя",
+    "uid" : "fc592a61a03999c",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680632564,
+      "stop" : 1773680633128,
+      "duration" : 564
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание пользователя уже зарегистрированного",
+    "uid" : "41e933888ee4fc73",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680633131,
+      "stop" : 1773680634065,
+      "duration" : 934
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание пользователя без обязательного поля",
+    "uid" : "8ad3a2c92f0f8941",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680634068,
+      "stop" : 1773680634580,
+      "duration" : 512
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание заказа без авторизации и без ингредиентов",
+    "uid" : "742f7b01386d39a3",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680634585,
+      "stop" : 1773680636453,
+      "duration" : 1868
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание заказа с неверным хешем ингредиентов",
+    "uid" : "53293cd4ddcf836d",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680636457,
+      "stop" : 1773680638390,
+      "duration" : 1933
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание заказа с авторизацией и ингредиентами",
+    "uid" : "495b884d7022a63d",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680638391,
+      "stop" : 1773680644028,
+      "duration" : 5637
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание заказа без авторизации, но с ингредиентами",
+    "uid" : "255b3b1dde430727",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680644032,
+      "stop" : 1773680646473,
+      "duration" : 2441
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "Создание заказа без ингредиентов (с авторизацией)",
+    "uid" : "55a50e81a6473610",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1773680646474,
+      "stop" : 1773680648497,
+      "duration" : 2023
+    },
+    "flaky" : false,
+    "newFailed" : false,
+    "parameters" : [ ]
+  } ]
+}

@@ -1,0 +1,111 @@
+[ {
+  "uid" : "8ad3a2c92f0f8941",
+  "name" : "Создание пользователя без обязательного поля",
+  "time" : {
+    "start" : 1773680634068,
+    "stop" : 1773680634580,
+    "duration" : 512
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ef05aeda3d4c50cd",
+  "name" : "Логин с неверным email",
+  "time" : {
+    "start" : 1773680629930,
+    "stop" : 1773680630428,
+    "duration" : 498
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "55a50e81a6473610",
+  "name" : "Создание заказа без ингредиентов (с авторизацией)",
+  "time" : {
+    "start" : 1773680646474,
+    "stop" : 1773680648497,
+    "duration" : 2023
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "41e933888ee4fc73",
+  "name" : "Создание пользователя уже зарегистрированного",
+  "time" : {
+    "start" : 1773680633131,
+    "stop" : 1773680634065,
+    "duration" : 934
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "825fa56115f9f50",
+  "name" : "Логин существующего пользователя",
+  "time" : {
+    "start" : 1773680630432,
+    "stop" : 1773680632560,
+    "duration" : 2128
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "742f7b01386d39a3",
+  "name" : "Создание заказа без авторизации и без ингредиентов",
+  "time" : {
+    "start" : 1773680634585,
+    "stop" : 1773680636453,
+    "duration" : 1868
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "fc592a61a03999c",
+  "name" : "Создание нового уникального пользователя",
+  "time" : {
+    "start" : 1773680632564,
+    "stop" : 1773680633128,
+    "duration" : 564
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1893f846b6aad935",
+  "name" : "Логин с неверным паролем",
+  "time" : {
+    "start" : 1773680624039,
+    "stop" : 1773680629721,
+    "duration" : 5682
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "53293cd4ddcf836d",
+  "name" : "Создание заказа с неверным хешем ингредиентов",
+  "time" : {
+    "start" : 1773680636457,
+    "stop" : 1773680638390,
+    "duration" : 1933
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "495b884d7022a63d",
+  "name" : "Создание заказа с авторизацией и ингредиентами",
+  "time" : {
+    "start" : 1773680638391,
+    "stop" : 1773680644028,
+    "duration" : 5637
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "255b3b1dde430727",
+  "name" : "Создание заказа без авторизации, но с ингредиентами",
+  "time" : {
+    "start" : 1773680644032,
+    "stop" : 1773680646473,
+    "duration" : 2441
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]
