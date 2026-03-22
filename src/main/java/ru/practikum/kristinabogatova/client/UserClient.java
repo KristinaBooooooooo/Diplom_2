@@ -1,44 +1,35 @@
-package ru.practikum.kristinabogatova;
+package ru.practikum.kristinabogatova.client;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import java.util.HashMap;
-import java.util.Map;
+import ru.practikum.kristinabogatova.Endpoints;
+import ru.practikum.kristinabogatova.TokenUtils;
+import ru.practikum.kristinabogatova.model.LoginUserRequest;
+import ru.practikum.kristinabogatova.model.RegisterUserRequest;
 
 /**
  * Клиент для работы с пользовательскими эндпоинтами
  */
 public class UserClient {
 
-    private final String BASE_URL = "https://stellarburgers.education-services.ru/api";
-
     public UserClient() {
-        RestAssured.baseURI = BASE_URL;
+        RestAssured.baseURI = Endpoints.BASE_URL;
     }
 
     public Response createUser(String email, String password, String name) {
-        Map<String, String> body = new HashMap<>();
-        body.put("email", email);
-        body.put("password", password);
-        body.put("name", name);
-
         return RestAssured.given()
                 .contentType(ContentType.JSON)
-                .body(body)
-                .post("/auth/register")
+                .body(new RegisterUserRequest(email, password, name))
+                .post(Endpoints.REGISTER_PATH)
                 .andReturn();
     }
 
     public Response loginUser(String email, String password) {
-        Map<String, String> body = new HashMap<>();
-        body.put("email", email);
-        body.put("password", password);
-
         return RestAssured.given()
                 .contentType(ContentType.JSON)
-                .body(body)
-                .post("/auth/login")
+                .body(new LoginUserRequest(email, password))
+                .post(Endpoints.LOGIN_PATH)
                 .andReturn();
     }
 
@@ -47,8 +38,8 @@ public class UserClient {
 
         return RestAssured.given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", accessToken.trim())
-                .delete("/auth/user")
+                .header("Authorization", TokenUtils.normalizeToken(accessToken))
+                .delete(Endpoints.USER_PATH)
                 .andReturn();
     }
 }

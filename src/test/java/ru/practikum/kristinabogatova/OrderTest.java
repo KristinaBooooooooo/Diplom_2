@@ -6,15 +6,20 @@ import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.practikum.kristinabogatova.client.IngredientClient;
+import ru.practikum.kristinabogatova.client.OrderClient;
+import ru.practikum.kristinabogatova.client.UserClient;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class OrderTest {
 
     private UserClient userClient;
     private OrderClient orderClient;
+    private IngredientClient ingredientClient;
     private String email;
     private String password;
     private String name;
@@ -24,10 +29,11 @@ public class OrderTest {
     public void setUp() {
         userClient = new UserClient();
         orderClient = new OrderClient();
+        ingredientClient = new IngredientClient();
 
-        email = Utils.generateRandomEmail();
-        password = Utils.generateRandomPassword();
-        name = Utils.generateRandomName();
+        email = RandomDataUtils.generateRandomEmail();
+        password = RandomDataUtils.generateRandomPassword();
+        name = RandomDataUtils.generateRandomName();
 
         Response createResp = userClient.createUser(email, password, name);
         assertEquals(200, createResp.getStatusCode());
@@ -45,7 +51,7 @@ public class OrderTest {
     @DisplayName("Создание заказа с авторизацией и ингредиентами")
     @Description("Проверяю, что авторизованный пользователь может создать заказ")
     public void createOrderWithAuthAndIngredients() {
-        String[] ingredients = Utils.getValidIngredientHashes();
+        List<String> ingredients = ingredientClient.getTwoIngredientHashes();
 
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
 
@@ -57,7 +63,7 @@ public class OrderTest {
     @DisplayName("Создание заказа без авторизации, но с ингредиентами")
     @Description("Проверяю, что неавторизованный пользователь может создать заказ")
     public void createOrderWithoutAuthAndIngredients() {
-        String[] ingredients = Utils.getValidIngredientHashes();
+        List<String> ingredients = ingredientClient.getTwoIngredientHashes();
 
         Response response = orderClient.createOrderWithoutAuth(ingredients);
 
@@ -68,7 +74,7 @@ public class OrderTest {
     @DisplayName("Создание заказа без ингредиентов (с авторизацией)")
     @Description("Проверяю, что API возвращает ошибку при пустом списке ингредиентов")
     public void createOrderWithAuthNoIngredients() {
-        String[] ingredients = {};
+        List<String> ingredients = List.of();
 
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
 
@@ -79,19 +85,18 @@ public class OrderTest {
     @DisplayName("Создание заказа с неверным хешем ингредиентов")
     @Description("Проверяю, что API возвращает ошибку при неверном хеше (ожидается 400 или 500)")
     public void createOrderWithInvalidHash() {
-        String[] ingredients = {Utils.invalidIngredientsHash()};
+        List<String> ingredients = List.of(RandomDataUtils.invalidIngredientsHash());
 
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
 
-        int code = response.getStatusCode();
-        assertTrue("Статус код должен быть ошибкой (>=400), но был " + code, code >= 400);
+        assertEquals(500, response.getStatusCode());
     }
 
     @Test
     @DisplayName("Создание заказа без авторизации и без ингредиентов")
     @Description("Проверяю, что API возвращает ошибку при пустом списке ингредиентов и без авторизации")
     public void createOrderWithoutAuthNoIngredients() {
-        String[] ingredients = {};
+        List<String> ingredients = List.of();
 
         Response response = orderClient.createOrderWithoutAuth(ingredients);
 
