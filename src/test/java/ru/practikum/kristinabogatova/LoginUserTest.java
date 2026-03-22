@@ -9,6 +9,7 @@ import org.junit.Test;
 import ru.practikum.kristinabogatova.client.UserClient;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class LoginUserTest {
 
@@ -52,7 +53,9 @@ public class LoginUserTest {
 
         Response response = userClient.loginUser(fakeEmail, password);
 
-        assertEquals("Неверный email не возвращает 401", 401, response.getStatusCode());
+        assertEquals("Неверный email возвращает 401", 401, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("email or password are incorrect", response.jsonPath().getString("message"));
     }
 
     @Test
@@ -61,6 +64,8 @@ public class LoginUserTest {
     public void loginWithWrongPassword() {
         Response response = userClient.loginUser(email, "wrongpassword123");
 
-        assertEquals("Неверный пароль не возвращает 401", 401, response.getStatusCode());
+        assertEquals("Неверный пароль возвращает 401", 401, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("email or password are incorrect", response.jsonPath().getString("message"));
     }
 }

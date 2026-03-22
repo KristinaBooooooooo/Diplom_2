@@ -12,8 +12,7 @@ import ru.practikum.kristinabogatova.client.UserClient;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class OrderTest {
 
@@ -79,6 +78,8 @@ public class OrderTest {
         Response response = orderClient.createOrderWithAuth(accessToken, ingredients);
 
         assertEquals(400, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("Ingredient ids must be provided", response.jsonPath().getString("message"));
     }
 
     @Test
@@ -101,5 +102,7 @@ public class OrderTest {
         Response response = orderClient.createOrderWithoutAuth(ingredients);
 
         assertEquals(400, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("Ingredient ids must be provided", response.jsonPath().getString("message"));
     }
 }

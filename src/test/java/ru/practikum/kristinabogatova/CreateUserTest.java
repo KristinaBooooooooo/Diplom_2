@@ -7,6 +7,7 @@ import org.junit.Test;
 import ru.practikum.kristinabogatova.client.UserClient;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class CreateUserTest {
 
@@ -38,6 +39,8 @@ public class CreateUserTest {
 
         assertEquals(200, first.getStatusCode());
         assertEquals(403, second.getStatusCode());
+        assertFalse(second.jsonPath().getBoolean("success"));
+        assertEquals("User already exists", second.jsonPath().getString("message"));
     }
 
     @Test
@@ -50,6 +53,8 @@ public class CreateUserTest {
         Response response = userClient.createUser(null, password, name);
 
         assertEquals(403, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("Email, password and name are required fields", response.jsonPath().getString("message"));
     }
 
     @Test
@@ -62,6 +67,8 @@ public class CreateUserTest {
         Response response = userClient.createUser(email, null, name);
 
         assertEquals(403, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("Email, password and name are required fields", response.jsonPath().getString("message"));
     }
 
     @Test
@@ -74,5 +81,7 @@ public class CreateUserTest {
         Response response = userClient.createUser(email, password, null);
 
         assertEquals(403, response.getStatusCode());
+        assertFalse(response.jsonPath().getBoolean("success"));
+        assertEquals("Email, password and name are required fields", response.jsonPath().getString("message"));
     }
 }
