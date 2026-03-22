@@ -1,5 +1,6 @@
 package ru.practikum.kristinabogatova.client;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -18,6 +19,7 @@ public class OrderClient {
         RestAssured.baseURI = Endpoints.BASE_URL;
     }
 
+    @Step("Создаю заказ с авторизацией")
     public Response createOrderWithAuth(String accessToken, List<String> ingredientHashes) {
         return RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -27,6 +29,7 @@ public class OrderClient {
                 .andReturn();
     }
 
+    @Step("Создаю заказ без авторизации")
     public Response createOrderWithoutAuth(List<String> ingredientHashes) {
         return RestAssured.given()
                 .contentType(ContentType.JSON)

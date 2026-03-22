@@ -1,5 +1,6 @@
 package ru.practikum.kristinabogatova.client;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import ru.practikum.kristinabogatova.Endpoints;
@@ -15,6 +16,7 @@ public class IngredientClient {
         RestAssured.baseURI = Endpoints.BASE_URL;
     }
 
+    @Step("Получаю валидные ингредиенты")
     public List<String> getTwoIngredientHashes() {
         Response resp = RestAssured.given()
                 .get(Endpoints.INGREDIENTS_PATH)

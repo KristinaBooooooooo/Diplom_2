@@ -1,5 +1,6 @@
 package ru.practikum.kristinabogatova.client;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -17,6 +18,7 @@ public class UserClient {
         RestAssured.baseURI = Endpoints.BASE_URL;
     }
 
+    @Step("Создаю пользователя")
     public Response createUser(String email, String password, String name) {
         return RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -25,6 +27,7 @@ public class UserClient {
                 .andReturn();
     }
 
+    @Step("Авторизую пользователя")
     public Response loginUser(String email, String password) {
         return RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -33,6 +36,7 @@ public class UserClient {
                 .andReturn();
     }
 
+    @Step("Удаляю пользователя")
     public Response deleteUser(String accessToken) {
         if (accessToken == null) return null;
 
